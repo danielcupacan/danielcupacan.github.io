@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portafolio Personal - Desarrollador</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* Purple color palette */
+    :root {
+      --purple-dark: #4b0082;
+      --purple: #6a0dad;
+      --purple-light: #9b59b6;
+      --purple-lightest: #d7bde2;
+      --bg-color: #f4ecf7;
+      --text-color: #2c2c2c;
+      --text-light: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--purple-dark);
+      color: var(--text-light);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: var(--purple-lightest);
+    }
+
+    main {
+      margin-top: 80px; /* height of header + spacing */
+      max-width: 1100px;
+      padding: 2rem 1rem 4rem 1rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(106, 13, 173, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      box-shadow: 0 6px 20px rgba(106, 13, 173, 0.3);
+    }
+
+    section h2 {
+      color: var(--purple);
+      margin-bottom: 1rem;
+      border-bottom: 3px solid var(--purple-light);
+      padding-bottom: 0.25rem;
+      font-weight: 700;
+      font-size: 2rem;
+    }
+
+    /* Inicio section */
+    #inicio {
+      text-align: center;
+    }
+
+    #inicio img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid var(--purple-light);
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    #inicio h2 {
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--purple-dark);
+    }
+
+    #inicio p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #444;
+    }
+
+    /* Projects Grid */
+    #proyectos .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2rem;
+    }
+
+    .project {
+      border: 1px solid var(--purple-lightest);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(106, 13, 173, 0.1);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(106, 13, 173, 0.3);
+    }
+
+    .project img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--purple);
+    }
+
+    .project-content {
+      padding: 1rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--purple-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-description {
+      color: #555;
+      flex-grow: 1;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-link {
+      text-decoration: none;
+      color: var(--purple);
+      font-weight: 600;
+      align-self: flex-start;
+      transition: color 0.3s ease;
+    }
+
+    .project-link:hover {
+      color: var(--purple-dark);
+    }
+
+    /* Experience lists */
+    .experience-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .experience-item {
+      margin-bottom: 1rem;
+      padding-left: 2rem;
+      position: relative;
+    }
+
+    .experience-item::before {
+      content: "\f0b1"; /* FontAwesome briefcase icon */
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--purple);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    .experience-item h3 {
+      margin: 0;
+      font-weight: 700;
+      color: var(--purple-dark);
+      font-size: 1.1rem;
+    }
+
+    .experience-item span {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .experience-item p {
+      margin: 0.2rem 0 0.8rem;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: var(--purple-dark);
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      header .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      #inicio img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><i class="fas fa-code"></i> Mi Portafolio</h1>
+      <nav>
+        <ul>
+          <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+          <li><a href="#proyectos"><i class="fas fa-briefcase"></i> Proyectos</a></li>
+          <li><a href="#experiencia-academica"><i class="fas fa-graduation-cap"></i> Experiencia Académica</a></li>
+          <li><a href="#experiencia-personal"><i class="fas fa-user"></i> Experiencia Personal</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" aria-label="Sección de Inicio">
+      <img src="https://i.pravatar.cc/150?img=5" alt="Foto de perfil del desarrollador" />
+      <h2>Hola, soy Juan Pérez</h2>
+      <p>
+        Desarrollador web apasionado especializado en construir aplicaciones modernas, 
+        rápidas y funcionales. Bienvenido a mi portafolio personal donde puedes ver mis proyectos y experiencia.
+      </p>
+    </section>
+
+    <section id="proyectos" aria-label="Sección de Proyectos">
+      <h2><i class="fas fa-code"></i> Proyectos</h2>
+      <div class="projects-grid">
+        <article class="project">
+          <img src="https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=600&q=80" alt="Captura del proyecto página web" />
+          <div class="project-content">
+            <h3 class="project-title">Sitio Web Personal</h3>
+            <p class="project-description">
+              Un sitio web totalmente responsivo desarrollado con HTML, CSS y JavaScript para mostrar un portafolio personal profesional.
+            </p>
+            <a class="project-link" href="#" target="_blank" rel="noopener"><i class="fas fa-arrow-right"></i> Ver proyecto</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" alt="Captura de aplicación móvil" />
+          <div class="project-content">
+            <h3 class="project-title">App To-Do List</h3>
+            <p class="project-description">
+              Aplicación móvil sencilla para gestión de tareas diarias, construida con React Native y funcionalidades offline.
+            </p>
+            <a class="project-link" href="#" target="_blank" rel="noopener"><i class="fas fa-arrow-right"></i> Ver proyecto</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Captura de aplicación backend" />
+          <div class="project-content">
+            <h3 class="project-title">API RESTful</h3>
+            <p class="project-description">
+              API para gestión de usuarios y productos, desarrollada con Node.js y Express. Incluye autenticación JWT y documentación Swagger.
+            </p>
+            <a class="project-link" href="#" target="_blank" rel="noopener"><i class="fas fa-arrow-right"></i> Ver proyecto</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experiencia-academica" aria-label="Sección de Experiencia Académica">
+      <h2><i class="fas fa-graduation-cap"></i> Experiencia Académica</h2>
+      <ul class="experience-list">
+        <li class="experience-item">
+          <h3>Bachillerato en Ciencias de la Computación</h3>
+          <span>Universidad Nacional Autónoma, 2015 - 2019</span>
+          <p>Estudios enfocados en programación, algoritmos, estructuras de datos y bases de datos.</p>
+        </li>
+        <li class="experience-item">
+          <h3>Curso Avanzado de JavaScript</h3>
+          <span>Platzi, 2020</span>
+          <p>Aprendizaje profundo de ES6, manejo de asíncronía, y desarrollo de aplicaciones SPA con React.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="experiencia-personal" aria-label="Sección de Experiencia Personal">
+      <h2><i class="fas fa-user"></i> Experiencia Personal</h2>
+      <ul class="experience-list">
+        <li class="experience-item">
+          <h3>Desarrollador Frontend</h3>
+          <span>Empresa Tech Solutions, 2019 - Actualidad</span>
+          <p>Creación y mantenimiento de interfaces de usuario modernas, optimizadas y accesibles para aplicaciones web.</p>
+        </li>
+        <li class="experience-item">
+          <h3>Freelance</h3>
+          <span>Proyectos independientes, 2018 - Presentes</span>
+          <p>Desarrollo de sitios web y aplicaciones personalizadas adquiriendo experiencia en gestión de clientes y proyectos.</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2024 Juan Pérez. Todos los derechos reservados.
+  </footer>
+</body>
+</html>
+
